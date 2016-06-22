@@ -17,13 +17,13 @@ You can find the main page at `app/spa-badge.html`. Click the Sample Page link t
 
 ### Release 1
 
-The app will have two servers, a front-end server and a back-end server. We will begin with the front-end. You can use the command `ruby -run -e httpd . -p 9000` to run your front-end server containing your static HTML files and your JavaScript. Access the server on `localhost:9000`. There is a sample API at `spa-badge-api.herokuapp.com`. 
+The app will have two servers, a front-end server and a back-end server. We will begin with the front-end. You can use the command `ruby -run -e httpd . -p 9000` to run your front-end server containing your static HTML files and your JavaScript. Access the server on `localhost:9000`. There is a sample API at `sample-badges-api.herokuapp.com`. 
 #### Routes for sample API
 ```
 GET /teachers --> show all teachers
 GET /teachers/1 --> show teacher with ID 1, badges included
-POST /badges --> create a new badge, expects phrase, votes, and teacher_id as parameters
-POST /badges/vote --> vote for a badge. Expects one param called "vote_type" whose value can be "up" or "down"
+POST /badges --> create a new badge, expects phrase and teacher_id as parameters
+PUT /badges/:id --> vote for a badge. Expects one param called "vote_type" whose value can be "up" or "down"
 ```
 
 Rules
