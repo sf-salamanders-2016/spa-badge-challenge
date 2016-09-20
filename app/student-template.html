@@ -1,0 +1,17 @@
+<script id="student-template" type="text/x-handlebars-template">
+  <div class="container">
+    <div class="logo">
+      <h1> SPA Badge </h1>
+    </div>
+    <h1> SF Students </h1>
+      <ul id="student-list">
+
+      {{#each student}}
+        <li><a href="/teachers/{{id}}">{{name}}</a></li>
+
+      {{/each}}
+
+        <li><a href="sample-page.html">Sample Page (to see what the badges view should look like)</a></li>
+      </ul>
+  </div>
+</script>

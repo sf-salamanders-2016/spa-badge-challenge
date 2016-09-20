@@ -1,5 +1,6 @@
 $(document).ready(function () {
   loadStudents();
+  loadBadges();
 });
 
 
@@ -11,14 +12,46 @@ var loadStudents = function() {
       method: "get"
     })
     .done(function(response){
-      console.log(response[0]);
-      for(var i=0; i<response.length; i++) {
-        var id = response[i]["id"];
-        var name = response[i]["name"];
-        $("#student-list").append(
-            "<li><a href='/teachers/" + id +"'>" + name + "</a></li>"
-          );
-      }
+      console.log(response)
+        var context = {
+          student: response
+        };
+        $(function() {
+          var theTemplateScript = $("#student-template").html();
+          var theTemplate = Handlebars.compile(theTemplateScript);
+          var theCompiledHtml = theTemplate(context);
+          console.log(theCompiledHtml);
+          $(document.body).append(theCompiledHtml);
+
+        })
     })
 
+}
+
+
+
+var loadBadges = function() {
+  $("#index-page").on("click", ".student-link", function(event) {
+    console.log(event);
+    event.preventDefault();
+    var id = $(this).attr("id");
+    url = "http://sample-badges-api.herokuapp.com/teachers/" + id
+    $.ajax({
+      url: url,
+      method: "get"
+    })
+    .done(function(response){
+        $("#student-container").hide();
+        var context = {
+          badge: response
+        };
+        $(function() {
+          var theTemplateScript = $("#badges-list").html();
+          var theTemplate = Handlebars.compile(theTemplateScript);
+          var theCompiledHtml = theTemplate(context);
+          console.log(theCompiledHtml);
+          $(document.body).append(theCompiledHtml);
+    })
+  })
+  })
 }
