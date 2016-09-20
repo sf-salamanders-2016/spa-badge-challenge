@@ -5,6 +5,8 @@ gem 'pg'
 gem 'rack-cors'
 gem 'haml'
 gem 'haml-rails'
+gem 'tilt-handlebars'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'byebug'
