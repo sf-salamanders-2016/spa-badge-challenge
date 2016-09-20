@@ -1,20 +1,19 @@
 class BadgesController < ActionController::API
 
   def create
-    @badge = Badge.new(params)
+    @badge = Badge.new(params[:badge])
     if @badge.save
-      redirect_to @teachers
+      render json: {data: @badge, url: '/'}
     else
-      render 'new' #What the hell...?
+      render json: {data: @badge.errors, url: '/'}
     end
   end
 
   def update
     @badge = Badge.find(params[:id])
-    # params[:vote_type] = 'up' or 'down'
     @badge.votes(params[:vote_type])
     @badge.save
-    redirect_to @teachers
+    render json: {data: @badge, url: '/'}
   end
 
 end
