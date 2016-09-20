@@ -24,13 +24,14 @@
   </script>
 
   <script id="badges-list" type="text/x-handlebars-template">
+    <div class="show-user">
+      <h2> {{name}}'s Badges </h2>
     {{#each badge}}
-
       <div id="{{id}}" class="slogan">
         <div class="body">{{id}} {{phrase}}</div>
         <div class="vote-on">
           <form action="#">
-            <input type="hidden" name="slogan_id" value=1>
+            <input type="hidden" name="slogan_id" value="{{id}}">
             <input type="hidden" name="vote_type" value="up">
             <button class="up" type="submit" name="submit">
               <img src="img/upvote.gif" alt="upvote_image" />
@@ -39,7 +40,7 @@
         </div>
         <div class="vote-on">
           <form action="#">
-            <input type="hidden" name="slogan_id" value=1>
+            <input type="hidden" name="slogan_id" value="{{id}}"">
             <input type="hidden" name="vote_type" value="down">
             <button class="down" type="submit" name="submit">
                 <img src="img/downvote.gif" alt="downvote_image" />
@@ -48,12 +49,28 @@
         </div>
 
         <div class="points">
-          (25 points)
+          ({{votes}} points)
         </div>
       </div>
 
     {{/each}}
+    <div class="add-badge">
+        <h3> Add a Badge: </h3>
+        <form action="#">
+          <input type="hidden" name="user_id" value="5" />
+          <input type="text" name="content" />
+          <input type="image" src="img/add_button.png" alt="Add Slogan" />
+        </form>
+      </div>
 
+
+
+      <div class="nav">
+        <span class="nav-link">
+          <a id="home" href="spa-badge.html"> HOME </a>
+        </span>
+      </div>
+    </div>
     </script>
 
   <title>SPABadge</title>
