@@ -1,5 +1,6 @@
 $(document).ready(function() {
   IndexPage();
+  showTeacher();
 });
 
 
@@ -14,34 +15,14 @@ function IndexPage() {
     })
    .done(function(result){
       var theTemplateScript = $("#teacher-template").html();
-
-        // Compile the template
-        var theTemplate = Handlebars.compile(theTemplateScript);
-
-        // Define our data object
-        // var data = result.data
-        var context= [
-          {
-            id: 1,
-            name: "Assunta",
-            created_at: "2016-09-20T21:26:52.033Z",
-            updated_at: "2016-09-20T21:26:52.033Z"
-          },
-          {
-            id: 2,
-            name: "Frank",
-            created_at: "2016-09-20T23:19:09.458Z",
-            updated_at: "2016-09-20T23:19:09.458Z"
-          }
-          ];
-
-        // Pass our data to the template
-        var theCompiledHtml = theTemplate(context);
-
-        // Add the compiled html to the page
-        $('.content-placeholder').html(theCompiledHtml);
-      console.log("I am hit");
-      console.log(result)
+      // Compile the template
+      var theTemplate = Handlebars.compile(theTemplateScript);
+      // Define our data object
+      var context= result
+      // Pass our data to the template
+      var theCompiledHtml = theTemplate(context);
+      // Add the compiled html to the page
+      $('.content-placeholder').html(theCompiledHtml);
     })
    .fail(function(error){
       console.log("I am BAD HIT");
@@ -49,4 +30,27 @@ function IndexPage() {
    })
 }
 
-
+var showTeacher = function() {
+  $(".content-placeholder").on("click", "a", function(event) {
+    event.preventDefault();
+    var id =  $(this).attr("href");
+    $(this).parent().find(".badge_container").load("_badges_view.html");
+    $.ajax({
+      url: 'http://localhost:3000/teachers/' + id,
+      method: 'get',
+      dataType: 'json'
+    })
+    .done(function(result) {
+      console.log(result);
+      var theTemplateScript = $("#badge-template").html();
+      // Compile the template
+      var theTemplate = Handlebars.compile(theTemplateScript);
+      // Define our data object
+      var context = result
+      // Pass our data to the template
+      var theCompiledHtml = theTemplate(context);
+      // Add the compiled html to the page
+      $('.badges-placeholder').html(theCompiledHtml);
+    })
+  })
+}

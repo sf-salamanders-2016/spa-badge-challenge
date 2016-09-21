@@ -11,20 +11,27 @@
     <div class="logo">
       <h1> SPA Badge </h1>
     </div>
-    <h1> SF Teachers </h1>
+    <div class="teacher_list">
+      <h1> SF Teachers </h1>
       <script id="teacher-template" type="text/x-handlebars-template">
-      {{#each context}}
-        <p>You can find me in {{name}}. My address is {{id}} {{created_at}}.</p>
-      {{/each}}
-
+        <ul>
+          {{#each data}}
+            <li>
+              <a href={{id}}> {{name}}</a>
+              <div class="badge_container"></div>
+            </li>
+          {{/each}}
+        </ul>
       </script>
+    </div>
+    <!--Your new content will be displayed in here-->
+    <div class="content-placeholder"></div>
 
-      <!--Your new content will be displayed in here-->
-      <div class="content-placeholder"></div>
-      <ul>
-        <li><a href="#">Walker</a></li>
-        <li><a href="sample-page.html">Sample Page (to see what the badges view should look like)</a></li>
-      </ul>
-  </div>
+<div class="test"></div>
+
+
+
+
+ </div>
 </body>
 </html>
