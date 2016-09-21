@@ -1,4 +1,5 @@
 class TeachersController < ApplicationController
+  skip_before_filter :verify_authenticity_token, :only => [:update]
 
   def index
     @teachers = Teacher.all
