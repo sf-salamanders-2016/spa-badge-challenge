@@ -7,4 +7,5 @@ class TeachersController < ActionController::API
     end
     render :json => @json
   end
+
 end
