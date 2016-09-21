@@ -1,4 +1,4 @@
-class BadgesController < ActionController::API
+class BadgesController < ApplicationController
 
   def create
     @badge = Badge.new(params[:badge])
