@@ -1,6 +1,7 @@
 $(document).ready(function() {
   IndexPage();
   showTeacher();
+  addBadge();
 });
 
 
@@ -34,6 +35,8 @@ var showTeacher = function() {
   $(".content-placeholder").on("click", "a", function(event) {
     event.preventDefault();
     var id =  $(this).attr("href");
+    $(".badge_container").toggle();
+    $(".badge_container").empty();
     $(this).parent().find(".badge_container").load("_badges_view.html");
     $.ajax({
       url: 'http://localhost:3000/teachers/' + id,
@@ -53,4 +56,11 @@ var showTeacher = function() {
       $('.badges-placeholder').html(theCompiledHtml);
     })
   })
+}
+
+var addBadge = function() {
+  $(".add-badge").on("click", "#submit_slogan", function(event) {
+    event.preventDefault();
+
+  });
 }

@@ -6,3 +6,12 @@
     </ul>
 </script>
     <div class="badges-placeholder"></div>
+
+<div class="add-badge">
+  <h3> Add a Badge: </h3>
+  <form action="/badges">
+    <input type="hidden" name="user_id" value="{{#data id}}" />
+    <input type="text" name="content" />
+    <input id="submit_slogan" type="image" src="img/add_button.png" alt="Add Slogan" />
+  </form>
+</div>
